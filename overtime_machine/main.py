@@ -2,7 +2,7 @@ from overtime_machine.excel import *
 from overtime_machine.word import *
 from datetime import datetime
 
-def happ_overtime(e_number:str, 
+def happy_overtime(e_number:str, 
                   e_name:str, 
                   year:str, 
                   start_date:datetime, 

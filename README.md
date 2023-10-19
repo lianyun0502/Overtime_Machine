@@ -55,7 +55,7 @@ SAVE_WORD_FILE = r'加班補休認可表-0081-Eric.docx'
 
 if __name__ == '__main__':
     
-    happ_overtime(e_number=E_NUMBER, 
+    happy_overtime(e_number=E_NUMBER, 
                   e_name=E_NAME, 
                   year=YEAR, 
                   start_date=START_DATE, 
