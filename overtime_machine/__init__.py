@@ -1,1 +1,1 @@
-from overtime_machine.main import happ_overtime
+from overtime_machine.main import happy_overtime
