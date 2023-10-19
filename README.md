@@ -16,7 +16,7 @@
     或直接 clone 源程式碼執行。
         
     ```bash
-    git clone git+https://github.com/lianyun0502/Overtime_Machine.git
+    git clone https://github.com/lianyun0502/Overtime_Machine.git
     ```
     並用指令安裝所需套件。
 
