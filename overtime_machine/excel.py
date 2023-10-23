@@ -2,6 +2,7 @@ import openpyxl
 from itertools import islice
 from datetime import datetime, timedelta, time
 import pandas as pd
+from typing import List, Optional   
 
 def get_exel_data(file:str, e_number:str)->list:
     wb = openpyxl.load_workbook(file)
@@ -54,9 +55,9 @@ def get_overtime(start_time:time, end_time:time)->float:
     else :
         # over_time = over_time.replace(hour=over_time.hour+1, minute=0)
         over_time = over_time.hour + 1
-    return over_time
+    return float(over_time)
 
-def get_DataFrame(data, date:datetime)->pd.DataFrame:
+def get_DataFrame(data, start_date:datetime, end_date:datetime, exclude_date:List[datetime])->pd.DataFrame:
     # print(my_data)
     columns = ('Date', 
             'Weekday', 
@@ -70,18 +71,20 @@ def get_DataFrame(data, date:datetime)->pd.DataFrame:
             'Over Time Hours',)
     df = pd.DataFrame(data, columns=columns)
 
-    df = df[df['Date'] >= date]
+    df = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
+    df = df[~df['Date'].isin(exclude_date)]
 
     df['Start Over Time'] = df.apply(lambda x: get_start_overtime(x['First Record'], x['Weekday']), axis=1)
     df['Over Time Hours'] = df.apply(lambda x: get_overtime(x['Start Over Time'], x['Last Record']), axis=1)
     df.sort_values(by=['Over Time Hours','Date'], inplace=True)
+    df = df[(df['Over Time Hours'] >= 0.5)]
     pd.set_option('display.unicode.ambiguous_as_wide', True)
     pd.set_option('display.unicode.east_asian_width', True)
-    print(f'Total over time:{df["Over Time Hours"].sum()}')
     df = df.iloc[-14:]
     df.sort_values(by=['Date'], inplace=True)
 
     print(df)
+    print(f'Total over time:{df["Over Time Hours"].sum()}')
     return df
 
 if __name__ == '__main__':
