@@ -35,15 +35,14 @@ def happy_overtime(e_number:str,
 
     date_region = f'{start_date.month}/{start_date.day}-{end_date.month}/{end_date.day}'
 
-
-    text1 = f'\t（\t{year} ）年（{date_region}）\t  工號：\t{e_number}   姓名： {e_name}'
+    text = f'（{year}）年（{date_region}）工號： {e_number}  姓名： {e_name} '
 
     doc = docx.Document(template_word_file)
 
     # print('段落數量： ', len(doc.paragraphs))
     # print('表格數量： ', len(doc.tables))
 
-    write_paragraph(doc.paragraphs, 3, text1, 14)
+    write_paragraph(doc.paragraphs, 2, text, 12)
 
     for table in doc.tables:
         rows = list(table.rows[2:])

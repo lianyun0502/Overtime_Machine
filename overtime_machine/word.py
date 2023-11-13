@@ -11,12 +11,13 @@ from typing import Tuple
 #     if idx == 3:
 #         print(doc.paragraphs[idx].text)
 
-def write_paragraph(paragraph, row:int, text:str, font_size:int=10, font_name:str='標楷體'):
-    paragraph[row].clear()
-    run = paragraph[row].add_run(text)
-    run.font.name = font_name
-    run._element.rPr.rFonts.set(qn('w:eastAsia'), font_name) # 中文字型要多加這一列
-    run.font.size = Pt(font_size)
+def write_paragraph(paragraph, row:int, text:str, font_size:int=12, font_name:str='微軟正黑體'):
+    p = paragraph[row]
+    p.text = text
+    p.style.font.name = font_name
+    p.style._element.rPr.rFonts.set(qn('w:eastAsia'), font_name) # 中文字型要多加這一列
+    p.style.font.size = Pt(font_size)
+
 
 def edit_table_paragraph(cell, text:str, font_size:int=10, font_name:str='標楷體', run_idx:int=0, clear:bool=True):
     if clear:

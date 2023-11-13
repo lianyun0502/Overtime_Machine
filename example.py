@@ -12,7 +12,7 @@ END_DATE = datetime(2023, 10, 20)
 
 EXCEL_FILE = r'C:\Users\eric.li\Desktop\My Github\Overtime_Machine\20230921~20231020 Attendance records.xlsx'
 
-SAVE_WORD_FILE = r'加班補休認可表-0081-Eric.docx'
+SAVE_WORD_FILE = r'加班補休認可表-0081 Eric Li.docx'
 
 EXCLUDE_DATE = [datetime(2023, 9, 23)]
 
